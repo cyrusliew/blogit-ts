@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
+import Landing from './Components/Landing';
+import MovieForm from './Components/Movie/Form';
+import BlogForm from './Components/Blog/Form';
+import RecipeForm from './Components/Recipe/Form';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        {/* TODO - Prefixed route with types */}
+        <Route path="/movie/new" component={MovieForm} />
+        <Route path="/blog/new" component={BlogForm} />
+        <Route path="/recipe/new" component={RecipeForm} />
+        <Route path="/edit/:id" />
+        <Route path="/show/:title" />
+        <Route path="/" component={Landing} />
+      </Switch>
+    </Router>
   );
 }
+
+library.add(fas);
 
 export default App;
